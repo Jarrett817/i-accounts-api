@@ -3,24 +3,27 @@
 exports.validate = {
   enable: true,
   package: 'egg-validate',
-}
+};
 
 exports.bcrypt = {
   enable: true,
-  package: 'egg-bcrypt'
-}
+  package: 'egg-bcrypt',
+};
 
-exports.mongoose = {
+// exports.mongoose = {
+//   enable: true,
+//   package: 'egg-mongoose',
+// };
+exports.sequelize = {
   enable: true,
-  package: 'egg-mongoose',
-}
-
+  package: 'egg-sequelize',
+};
 exports.jwt = {
   enable: true,
   package: 'egg-jwt',
-}
+};
 
 exports.cors = {
   enable: true,
   package: 'egg-cors',
-}
+};
