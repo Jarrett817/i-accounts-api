@@ -11,12 +11,12 @@ module.exports = {
         allowNull: false,
       },
       user_id: {
-        type: INTEGER,
+        type: STRING(30),
         references: {
           model: {
             tableName: 'users',
           },
-          key: 'id',
+          key: 'user_id',
         },
         allowNull: false,
       },
@@ -24,7 +24,7 @@ module.exports = {
         type: INTEGER,
         references: {
           model: {
-            tableName: 'users',
+            tableName: 'tags',
           },
           key: 'id',
         },
