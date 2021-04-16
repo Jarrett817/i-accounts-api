@@ -18,6 +18,13 @@ module.exports = app => {
   router.post('/iAccounts/bills', app.jwt, controller.bill.addBill);
   router.get('/iAccounts/bills/detail', app.jwt, controller.bill.findBill);
   router.delete('/iAccounts/bills', app.jwt, controller.bill.deleteBill);
+  router.put('/iAccounts/bills/detail', app.jwt, controller.bill.updateBill);
+  router.get(
+    '/iAccounts/bills/monthList',
+    app.jwt,
+    controller.bill.getMonthList
+  );
+  router.get('/iAccounts/bills/timeSlot', app.jwt, controller.bill.getTimeSlot);
 
   //tags
   router.get('/iAccounts/tags/list', app.jwt, controller.tag.getTagsByType);

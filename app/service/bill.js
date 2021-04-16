@@ -1,6 +1,8 @@
 'use strict';
 const Service = require('egg').Service;
 const { Op } = require('sequelize');
+const dayjs = require('dayjs');
+
 function toInt(str) {
   if (typeof str === 'number') return str;
   if (!str) return str;
@@ -49,7 +51,7 @@ class BillService extends Service {
           icon: tag.icon,
         },
         desc: desc,
-        createTime: created_at,
+        createdAt: created_at,
       };
     });
     return billList || [];
@@ -79,15 +81,15 @@ class BillService extends Service {
     });
     return { expend: expend || 0, income: income || 0 };
   }
-  async findBill(id) {
+  async findBill(billId) {
     const userId = this.ctx.state.user.data.id;
     const bill = await this.ctx.model.Bill.findOne({
-      where: { id: id, user_id: userId },
+      where: { id: billId, user_id: userId },
     });
-    const { billId, type, value, desc, tag_id, create_at } = bill;
+    const { id, type, value, desc, tag_id, created_at } = bill;
     const tag = await this.ctx.service.tag.findTag(tag_id);
     return {
-      id: billId,
+      id: id,
       type: type,
       value: value,
       desc: desc,
@@ -96,14 +98,20 @@ class BillService extends Service {
         name: tag.name,
         icon: tag.icon,
       },
-      createAt: create_at,
+      createdAt: created_at,
     };
   }
-  async updateBill(
-    params = { id: null, type: '', value: null, desc: '', tagId: null }
-  ) {
-    const user = await this.ctx.model.User('select * from user where uid = ?');
-    return user;
+  async updateBill({ id, type, value, desc, tagId }) {
+    const userId = this.ctx.state.user.data.id;
+    const bill = await this.ctx.model.Bill.findOne({
+      where: { id: id, user_id: userId },
+    });
+    bill.type = type;
+    bill.value = value;
+    bill.desc = desc;
+    bill.tag_id = tagId;
+    bill.save();
+    return bill;
   }
   async addBill({ type, value, desc, tagId, date }) {
     const id = this.ctx.state.user.data.id;
@@ -131,12 +139,58 @@ class BillService extends Service {
     bill.destroy();
   }
   async getMonthListByYear(year) {
-    const user = await this.ctx.model.User('select * from user where uid = ?');
-    return user;
+    const { ctx } = this;
+    const userId = ctx.state.user.data.id;
+    const yearStart = dayjs(year).startOf('year').valueOf();
+    const yearEnd = dayjs(year).endOf('year').valueOf();
+    const result = [];
+    const wholeData = await ctx.model.Bill.findAll({
+      where: {
+        user_id: userId,
+        created_at: {
+          [Op.gte]: yearStart,
+          [Op.lte]: yearEnd,
+        },
+      },
+    });
+    for (let i = 0; i < 12; i++) {
+      let income = 0;
+      let expend = 0;
+      const monthStart = dayjs(yearStart).month(i).startOf('month').valueOf();
+      const monthEnd = dayjs(yearStart).month(i).endOf('month').valueOf();
+      wholeData.forEach(item => {
+        if (
+          toInt(item.created_at) > monthStart &&
+          toInt(item.created_at) < monthEnd
+        ) {
+          if (item.type === 'expend') expend += item.value;
+          else income += item.value;
+        }
+      });
+      result.push({
+        month: dayjs(yearStart).month(i).month() + 1,
+        expend,
+        income,
+      });
+    }
+    return result;
   }
   async getUserTimeSlot() {
-    const user = await this.ctx.model.User('select * from user where uid = ?');
-    return user;
+    const { ctx } = this;
+    const userId = ctx.state.user.data.id;
+    const maxDate = await ctx.model.Bill.max('created_at', {
+      where: {
+        user_id: userId,
+        created_at: { [Op.gt]: 0 },
+      },
+    });
+    const minDate = await ctx.model.Bill.min('created_at', {
+      where: {
+        user_id: userId,
+        created_at: { [Op.gt]: 0 },
+      },
+    });
+    return { maxDate, minDate };
   }
 }
 

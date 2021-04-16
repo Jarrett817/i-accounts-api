@@ -57,6 +57,24 @@ class BillController extends Controller {
     const res = await service.bill.deleteBill(payload.id);
     ctx.helper.success({ ctx, res });
   }
+  async updateBill() {
+    const { ctx, service } = this;
+    const payload = ctx.request.body || {};
+    const res = await service.bill.updateBill(payload);
+    ctx.helper.success({ ctx, res });
+  }
+
+  async getMonthList() {
+    const { ctx, service } = this;
+    const payload = ctx.query || {};
+    const res = await service.bill.getMonthListByYear(payload.year);
+    ctx.helper.success({ ctx, res });
+  }
+  async getTimeSlot() {
+    const { ctx, service } = this;
+    const res = await service.bill.getUserTimeSlot();
+    ctx.helper.success({ ctx, res });
+  }
 }
 
 module.exports = BillController;

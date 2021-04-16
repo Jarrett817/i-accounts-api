@@ -8,8 +8,6 @@ class UserAccessService extends Service {
     const user = await ctx.model.User.findOne({
       where: { user_id: payload.id },
     });
-    console.log('我执行了', user);
-
     if (!user) {
       ctx.throw(404, '用户不存在，请先注册');
     }
