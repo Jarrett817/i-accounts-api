@@ -7,6 +7,7 @@ module.exports = app => {
   router.get('/', controller.home.index);
   // userAccess
   router.post('/iAccounts/login', controller.userAccess.login);
+  router.post('/iAccounts/login/register', controller.userAccess.register);
 
   //bill
   router.get('/iAccounts/bills/list', app.jwt, controller.bill.getBillList);

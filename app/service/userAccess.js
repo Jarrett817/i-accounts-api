@@ -18,7 +18,22 @@ class UserAccessService extends Service {
     return { token: await service.actionToken.apply(user.user_id) };
   }
 
-  async logout() {}
+  async register(payload) {
+    const { ctx } = this;
+    const { id, password } = payload;
+    const user = await ctx.model.User.findOne({
+      where: { user_id: id },
+    });
+    if (user) {
+      ctx.throw('账号已存在');
+    }
+    const newUser = await this.ctx.model.User.create({
+      user_id: id,
+      user_pass: password,
+    });
+    // 生成Token令牌
+    return newUser;
+  }
 }
 
 module.exports = UserAccessService;

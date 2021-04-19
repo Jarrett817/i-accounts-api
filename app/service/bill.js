@@ -101,7 +101,7 @@ class BillService extends Service {
       createdAt: created_at,
     };
   }
-  async updateBill({ id, type, value, desc, tagId }) {
+  async updateBill({ id, type, value, desc, tagId, createdAt }) {
     const userId = this.ctx.state.user.data.id;
     const bill = await this.ctx.model.Bill.findOne({
       where: { id: id, user_id: userId },
@@ -110,19 +110,21 @@ class BillService extends Service {
     bill.value = value;
     bill.desc = desc;
     bill.tag_id = tagId;
+    bill.created_at = createdAt;
     bill.save();
     return bill;
   }
-  async addBill({ type, value, desc, tagId, date }) {
+  async addBill({ type, value, desc, tagId, createdAt }) {
     const id = this.ctx.state.user.data.id;
-    this.ctx.model.Bill.create({
+    const bill = await this.ctx.model.Bill.create({
       type,
       value,
       desc,
       tag_id: tagId,
       user_id: id,
-      created_at: date,
+      created_at: createdAt,
     });
+    return bill;
   }
   async deleteBill(billId) {
     const { ctx } = this;
@@ -134,7 +136,7 @@ class BillService extends Service {
       },
     });
     if (!bill) {
-      ctx.throw(404, '用户不存在');
+      ctx.throw(404, '账单不存在');
     }
     bill.destroy();
   }

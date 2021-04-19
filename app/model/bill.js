@@ -24,12 +24,6 @@ module.exports = app => {
       },
       tag_id: {
         type: INTEGER,
-        references: {
-          model: {
-            tableName: 'tags',
-          },
-          key: 'id',
-        },
       },
       type: STRING(10),
       value: FLOAT(2),

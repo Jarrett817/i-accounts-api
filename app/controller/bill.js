@@ -11,7 +11,7 @@ class BillController extends Controller {
   constructor(ctx) {
     super(ctx);
     this.billTransfer = {
-      date: { type: 'number', required: true, allowEmpty: false },
+      createdAt: { type: 'number', required: true, allowEmpty: false },
       desc: { type: 'string', required: false, allowEmpty: true },
       tagId: { type: 'number', required: true, allowEmpty: false },
       type: { type: 'string', required: true, allowEmpty: false },
