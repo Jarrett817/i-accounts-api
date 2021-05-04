@@ -20,9 +20,8 @@ module.exports = {
         },
         allowNull: false,
       },
-      tag_id: {
-        type: INTEGER,
-      },
+      tag_name: STRING(10),
+      tag_icon: STRING(10),
       type: STRING(10),
       value: FLOAT(2),
       desc: STRING(60),

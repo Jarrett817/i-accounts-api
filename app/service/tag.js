@@ -50,6 +50,7 @@ class TagService extends Service {
       },
     });
     tag.destroy();
+    return tag;
   }
 
   async updateTag({ id, name, icon }) {

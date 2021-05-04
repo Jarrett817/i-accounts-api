@@ -37,18 +37,16 @@ class BillService extends Service {
         },
       });
     }
-    const tags = await service.tag.findAllTags();
+
     const billList = data.map(item => {
-      const { id, type, value, desc, created_at, tag_id } = item;
-      const tag = tags.find(item => item.id === tag_id);
+      const { id, type, value, desc, created_at, tag_name, tag_icon } = item;
       return {
         type: type,
         value: value,
         id: id,
         tag: {
-          name: tag.name,
-          id: tag.id,
-          icon: tag.icon,
+          name: tag_name,
+          icon: tag_icon,
         },
         desc: desc,
         createdAt: created_at,
@@ -86,17 +84,15 @@ class BillService extends Service {
     const bill = await this.ctx.model.Bill.findOne({
       where: { id: billId, user_id: userId },
     });
-    const { id, type, value, desc, tag_id, created_at } = bill;
-    const tag = await this.ctx.service.tag.findTag(tag_id);
+    const { id, type, value, desc, created_at, tag_icon, tag_name } = bill;
     return {
       id: id,
       type: type,
       value: value,
       desc: desc,
       tag: {
-        id: tag.id,
-        name: tag.name,
-        icon: tag.icon,
+        name: tag_name,
+        icon: tag_icon,
       },
       createdAt: created_at,
     };
@@ -106,21 +102,25 @@ class BillService extends Service {
     const bill = await this.ctx.model.Bill.findOne({
       where: { id: id, user_id: userId },
     });
+    const tag = await this.service.tag.findTag(tagId);
     bill.type = type;
     bill.value = value;
     bill.desc = desc;
-    bill.tag_id = tagId;
+    bill.tag_name = tag.name;
+    bill.tag_icon = tag.icon;
     bill.created_at = createdAt;
     bill.save();
     return bill;
   }
   async addBill({ type, value, desc, tagId, createdAt }) {
     const id = this.ctx.state.user.data.id;
+    const tag = await this.service.tag.findTag(tagId);
     const bill = await this.ctx.model.Bill.create({
       type,
       value,
       desc,
-      tag_id: tagId,
+      tag_name: tag.name,
+      tag_icon: tag.icon,
       user_id: id,
       created_at: createdAt,
     });
@@ -139,6 +139,7 @@ class BillService extends Service {
       ctx.throw(404, '账单不存在');
     }
     bill.destroy();
+    return bill;
   }
   async getMonthListByYear(year) {
     const { ctx } = this;

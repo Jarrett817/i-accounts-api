@@ -6,8 +6,8 @@ module.exports = app => {
   const { router, controller } = app;
   router.get('/', controller.home.index);
   // userAccess
-  router.post('/iAccounts/login', controller.userAccess.login);
-  router.post('/iAccounts/login/register', controller.userAccess.register);
+  router.post('/iAccounts/user/login', controller.userAccess.login);
+  router.post('/iAccounts/user/register', controller.userAccess.register);
 
   //bill
   router.get('/iAccounts/bills/list', app.jwt, controller.bill.getBillList);
@@ -19,7 +19,7 @@ module.exports = app => {
   router.post('/iAccounts/bills', app.jwt, controller.bill.addBill);
   router.get('/iAccounts/bills/detail', app.jwt, controller.bill.findBill);
   router.delete('/iAccounts/bills', app.jwt, controller.bill.deleteBill);
-  router.put('/iAccounts/bills/detail', app.jwt, controller.bill.updateBill);
+  router.put('/iAccounts/bills', app.jwt, controller.bill.updateBill);
   router.get(
     '/iAccounts/bills/monthList',
     app.jwt,
