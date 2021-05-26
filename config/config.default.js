@@ -54,7 +54,7 @@ module.exports = appInfo => {
     database: 'egg_iaccounts_db',
     username: 'root',
     timezone: '+08:00',
-    password: '13867223154',
+    password: 'Wjr@13867223154',
   };
   config.jwt = {
     secret: 'Great4-M',
