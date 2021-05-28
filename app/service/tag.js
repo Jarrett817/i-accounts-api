@@ -11,8 +11,21 @@ class TagService extends Service {
       },
     });
   }
+  async uniqueName(tagName) {
+    const tag = await this.ctx.model.Tag.findOne({
+      where: {
+        name: tagName,
+      },
+    });
+    if (tag) {
+      this.ctx.throw(403, '标签名已存在');
+    }
+    return tag;
+  }
   async addTag({ name, icon, type }) {
     const userId = this.ctx.state.user.data.id;
+    const exist = await this.uniqueName(name);
+    if (exist) return;
     return this.ctx.model.Tag.create({
       name,
       icon,

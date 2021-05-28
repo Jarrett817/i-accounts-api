@@ -45,7 +45,9 @@
     "cov": "egg-bin cov",
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
-    "autod": "autod"
+    "autod": "autod",
+    "initMysqlPro": "npx sequelize db:migrate --env production",
+    "initMysqlDev":"npx sequelize db:migrate"
   },
   "ci": {
     "version": "8"

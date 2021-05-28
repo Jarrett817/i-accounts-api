@@ -8,22 +8,21 @@
     "define": {
       "charset": "utf8",
       "dialectOptions": {
-        "collate": "utf8_general_ci"
+        "collate": "utf8_bin"
       }
     }
   },
-  "test": {
-    "username": "root",
-    "password": "13867223154",
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
   "production": {
     "username": "root",
-    "password": "13867223154",
-    "database": "database_production",
+    "password": "Wjr@13867223154",
+    "database": "egg_iaccounts_db",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "define": {
+      "charset": "utf8",
+      "dialectOptions": {
+        "collate": "utf8_bin"
+      }
+    }
   }
 }
