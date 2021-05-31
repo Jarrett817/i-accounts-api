@@ -1,0 +1,71 @@
+Date : 2021-05-31 17:57:22
+Directory : d:\projects\money-lover-api\egg-RESTfulAPI
+Total : 30 files,  1168 codes, 87 comments, 155 blanks, all 1410 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JavaScript |         23 |        974 |         83 |        107 |      1,164 |
+| JSON       |          2 |         89 |          0 |          2 |         91 |
+| YAML       |          3 |         53 |          2 |         16 |         71 |
+| Markdown   |          2 |         52 |          2 |         30 |         84 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                        | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                           |         30 |      1,168 |         87 |        155 |      1,410 |
+| .github                                                                                     |          1 |         31 |          2 |         10 |         43 |
+| .github\workflows                                                                           |          1 |         31 |          2 |         10 |         43 |
+| app                                                                                         |         15 |        740 |         50 |         73 |        863 |
+| app\controller                                                                              |          4 |        146 |         30 |         23 |        199 |
+| app\extend                                                                                  |          1 |         10 |          2 |          3 |         15 |
+| app\middleware                                                                              |          1 |         23 |          3 |          2 |         28 |
+| app\model                                                                                   |          3 |         88 |          0 |         12 |        100 |
+| app\service                                                                                 |          5 |        426 |          9 |         31 |        466 |
+| config                                                                                      |          3 |        110 |         29 |         19 |        158 |
+| database                                                                                    |          4 |        110 |          2 |          7 |        119 |
+| database\migrations                                                                         |          3 |         82 |          2 |          6 |         90 |
+| test                                                                                        |          1 |         14 |          2 |          6 |         22 |
+| test\app                                                                                    |          1 |         14 |          2 |          6 |         22 |
+| test\app\controller                                                                         |          1 |         14 |          2 |          6 |         22 |
++---------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                    | language   | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| d:\projects\money-lover-api\egg-RESTfulAPI\.autod.conf.js                                   | JavaScript |         28 |          0 |          3 |         31 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\.github\workflows\nodejs.yml                     | YAML       |         31 |          2 |         10 |         43 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\.travis.yml                                      | YAML       |         11 |          0 |          2 |         13 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\README.md                                        | Markdown   |         28 |          1 |         15 |         44 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\README.zh-CN.md                                  | Markdown   |         24 |          1 |         15 |         40 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\app\controller\bill.js                           | JavaScript |         68 |          6 |          7 |         81 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\app\controller\home.js                           | JavaScript |          9 |          0 |          3 |         12 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\app\controller\tag.js                            | JavaScript |         43 |         15 |          7 |         65 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\app\controller\userAccess.js                     | JavaScript |         26 |          9 |          6 |         41 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\app\extend\helper.js                             | JavaScript |         10 |          2 |          3 |         15 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\app\middleware\error_handler.js                  | JavaScript |         23 |          3 |          2 |         28 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\app\model\bill.js                                | JavaScript |         36 |          0 |          4 |         40 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\app\model\tag.js                                 | JavaScript |         34 |          0 |          4 |         38 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\app\model\user.js                                | JavaScript |         18 |          0 |          4 |         22 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\app\router.js                                    | JavaScript |         47 |          6 |          2 |         55 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\app\service\actionToken.js                       | JavaScript |         17 |          0 |          4 |         21 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\app\service\bill.js                              | JavaScript |        196 |          0 |          5 |        201 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\app\service\tag.js                               | JavaScript |         80 |          0 |          5 |         85 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\app\service\user.js                              | JavaScript |        100 |          7 |         12 |        119 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\app\service\userAccess.js                        | JavaScript |         33 |          2 |          5 |         40 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\appveyor.yml                                     | YAML       |         11 |          0 |          4 |         15 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\config\config.default.js                         | JavaScript |         43 |         16 |          8 |         67 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\config\config.prod.js                            | JavaScript |         47 |          7 |          7 |         61 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\config\plugin.js                                 | JavaScript |         20 |          6 |          4 |         30 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\database\config.json                             | JSON       |         28 |          0 |          1 |         29 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\database\migrations\20210413054953-init-users.js | JavaScript |         16 |          2 |          2 |         20 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\database\migrations\20210413060250-init-tags.js  | JavaScript |         32 |          0 |          2 |         34 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\database\migrations\20210413060427-init-bills.js | JavaScript |         34 |          0 |          2 |         36 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\package.json                                     | JSON       |         61 |          0 |          1 |         62 |
+| d:\projects\money-lover-api\egg-RESTfulAPI\test\app\controller\home.test.js                 | JavaScript |         14 |          2 |          6 |         22 |
+| Total                                                                                       |            |      1,168 |         87 |        155 |      1,410 |
++---------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

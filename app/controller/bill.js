@@ -13,7 +13,7 @@ class BillController extends Controller {
     this.billTransfer = {
       createdAt: { type: 'number', required: true, allowEmpty: false },
       desc: { type: 'string', required: false, allowEmpty: true },
-      tagId: { type: 'number', required: true, allowEmpty: false },
+      tagName: { type: 'string', required: true, allowEmpty: false },
       type: { type: 'string', required: true, allowEmpty: false },
       value: { type: 'number', required: true, allowEmpty: false },
     };

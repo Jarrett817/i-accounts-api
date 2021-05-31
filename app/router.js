@@ -41,7 +41,6 @@ module.exports = app => {
     app.jwt,
     controller.bill.getTimeSlot
   );
-
   //tags
   router.get(
     '/iAccounts/api/v1/tags/list',

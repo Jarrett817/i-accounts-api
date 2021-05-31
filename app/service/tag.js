@@ -11,6 +11,15 @@ class TagService extends Service {
       },
     });
   }
+  async findTagByName(name) {
+    const userId = this.ctx.state.user.data.id;
+    return this.ctx.model.Tag.findOne({
+      where: {
+        name: name,
+        user_id: userId,
+      },
+    });
+  }
   async uniqueName(tagName) {
     const tag = await this.ctx.model.Tag.findOne({
       where: {
@@ -78,6 +87,7 @@ class TagService extends Service {
     tag.name = name;
     tag.icon = icon;
     tag.save();
+    return tag;
   }
 }
 

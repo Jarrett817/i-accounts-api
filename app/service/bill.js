@@ -97,12 +97,12 @@ class BillService extends Service {
       createdAt: created_at,
     };
   }
-  async updateBill({ id, type, value, desc, tagId, createdAt }) {
+  async updateBill({ id, type, value, desc, tagName, createdAt }) {
     const userId = this.ctx.state.user.data.id;
     const bill = await this.ctx.model.Bill.findOne({
       where: { id: id, user_id: userId },
     });
-    const tag = await this.service.tag.findTag(tagId);
+    const tag = await this.service.tag.findTagByName(tagName);
     bill.type = type;
     bill.value = value;
     bill.desc = desc;
@@ -112,9 +112,9 @@ class BillService extends Service {
     bill.save();
     return bill;
   }
-  async addBill({ type, value, desc, tagId, createdAt }) {
+  async addBill({ type, value, desc, tagName, createdAt }) {
     const id = this.ctx.state.user.data.id;
-    const tag = await this.service.tag.findTag(tagId);
+    const tag = await this.service.tag.findTagByName(tagName);
     const bill = await this.ctx.model.Bill.create({
       type,
       value,
